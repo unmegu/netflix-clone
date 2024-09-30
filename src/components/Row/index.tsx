@@ -1,11 +1,14 @@
-import axios from "../../axios";
+import { useProps } from "./useProps";
+import { Layout } from "./Layout";
 
-export const Row = ({ fetchUrl }: { fetchUrl: string }) => {
-  async function fetchData() {
-    const request = await axios.get(fetchUrl);
-  }
+type Props = {
+  title: string;
+  fetchUrl: string;
+  isLargeRow?: boolean;
+};
 
-  fetchData();
+export const Row = ({ title, fetchUrl, isLargeRow }: Props) => {
+  const movies = useProps(fetchUrl);
 
-  return <div className="Row" />;
+  return <Layout title={title} movies={movies} isLargeRow={isLargeRow} />;
 };
