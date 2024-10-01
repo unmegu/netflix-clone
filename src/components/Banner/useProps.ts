@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "../../axios";
+import axios from "../../axios.ts";
 import { requests } from "../../request.ts";
 import { Movie } from "../../type.ts";
 

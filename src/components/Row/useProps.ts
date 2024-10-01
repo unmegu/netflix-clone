@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "../../axios";
+import axios from "../../axios.ts";
 import { Movie } from "../../type.ts";
 
 // src/type.tsを利用することにより不要になったブロック↓

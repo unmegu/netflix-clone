@@ -1,4 +1,4 @@
-import { Movie } from "./../../type.ts";
+import { Movie } from "../../type.ts";
 
 type LayoutProps = {
   title: string;
