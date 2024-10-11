@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "../../axios.ts";
+import axios from "../../axios";
 import { requests } from "../../request.ts";
 import { Movie } from "../../type.ts";
 
@@ -8,12 +8,11 @@ export const useProps = () => {
   useEffect(() => {
     async function fetchData() {
       const request = await axios.get(requests.fetchNetflixOriginals);
-
+      const random_num = Math.floor(Math.random() * request.data.results.length - 1);
+      console.log(request.data.results);
       // ① 取得した映像データからランダムでmovieに格納
       setMovie(
-        request.data.results[
-          Math.floor(Math.random() * request.data.results.length - 1)
-        ],
+        request.data.results[random_num],
       );
     }
     fetchData();

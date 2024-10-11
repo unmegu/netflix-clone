@@ -5,6 +5,7 @@ type LayoutProps = {
   movies: Movie[];
   isLargeRow?: boolean;
 };
+
 export const Layout = ({ title, movies, isLargeRow }: LayoutProps) => {
   const image_url = "https://image.tmdb.org/t/p/original";
   return (
