@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "../../axios.ts";
 import { Movie } from "../../type.ts";
+import { requests } from "../../request.ts";
 
 // src/type.tsを利用することにより不要になったブロック↓
 /*
@@ -15,6 +16,8 @@ export type Movie = {
 
 export const useProps = (fetchUrl: string) => {
   const [movies, setMovies] = useState<Movie[]>([]);
+  const [trailerUrl, setTrailerUrl] = useState<string | null>("");
+
 
   // ①APIの取得はuseEffectを使う
   useEffect(() => {
@@ -33,5 +36,19 @@ export const useProps = (fetchUrl: string) => {
     fetchData();
   }, [fetchUrl]);
 
-  return movies;
+  // 追加
+  const handleClick = async (movie: Movie) => {
+    if (trailerUrl) {
+      setTrailerUrl("");
+    } else {
+      const moviePlayUrl = await axios.get(requests.fetchMovieVideos(movie.id));
+      setTrailerUrl(moviePlayUrl.data.results[0]?.key);
+    }
+  };
+
+  return {
+    movies,
+    trailerUrl,
+    handleClick,
+  };
 };
